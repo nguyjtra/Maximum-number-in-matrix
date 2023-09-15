@@ -1,0 +1,39 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int dx[]={-1,-1,-1,0,0,1,1,1};
+int dy[]={-1,0,1,-1,1,-1,0,1};
+bool check(int a[][110],int n,int m,int i,int j){
+    for(int u=0;u<8;u++){
+        int idx=i+dx[u];
+        int idy=j+dy[u];
+        if(idx>=0 && idx<n && idy>=0 && idy <m && a[idx][idy]>=a[i][j]){
+            return 0;
+        }
+    }
+    return 1;
+}
+int main() {
+    int n,m;cin>>n>>m;
+     int a[n][110];
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>a[i][j];
+        }
+    }
+    int count=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(check(a,n,m,i,j))++count;
+        }
+    }
+    cout<<count;
+    
+    
+    
+    return 0;
+}
